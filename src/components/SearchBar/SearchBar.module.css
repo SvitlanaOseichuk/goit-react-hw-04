@@ -1,0 +1,21 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f79f9f;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+    padding: 5px;
+  }
+  
+.input{
+    background-color: #fcadc2;
+    border-radius: 4px;
+    margin-left: 10px;
+    outline: none;
+    color: rgba(72, 62, 62, 0.87);
+    border: 1px solid rgba(72, 62, 62, 0.87);
+    padding: 3px 5px;
+}  
+  
