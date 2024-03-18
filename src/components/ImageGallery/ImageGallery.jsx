@@ -5,15 +5,12 @@ const ImageGallery = ({pictures}) => {
   return (
     <ul>
       {pictures !== null &&
-        Array.isArray(pictures) &&
-        pictures.length > 0 ? (
+        Array.isArray(pictures) && (
           pictures.map((pic) => (
             <li key={pic.id}>
               <ImageCard pic={pic} />
             </li>
           ))
-        ) : (
-          <p>No images found</p>
         )}
     </ul>
   )

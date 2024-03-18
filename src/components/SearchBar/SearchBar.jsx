@@ -2,13 +2,14 @@ import React from 'react';
 import css from './SearchBar.module.css';
 import { Field, Form, Formik } from 'formik';
 
-const SearchBar = ({ onSubmit }) => {
+const SearchBar = ({ onSetsearchquery }) => {
   return (
     <Formik
       initialValues={{ query: '' }}
-      onSubmit={(values) => {
-        onSubmit(values.query);
-      }}
+      onSubmit={(values, { resetForm }) => {
+      resetForm({ values: { query: '' } }); // Очистити значення поля query
+      onSetsearchquery(values.query);
+    }}
     >
       <Form>
         <Field

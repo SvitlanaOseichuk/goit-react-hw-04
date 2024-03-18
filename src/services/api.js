@@ -8,8 +8,10 @@ export const requestPictures = async () => {
 }
 
 export const requestPicturesByQuery = async (query) => {
-    const {data} = await axios.get(`https://api.unsplash.com/photos?client_id=${ACCESS_KEY}&q=${query}`);
+    const {data} = await axios.get(`https://api.unsplash.com/search/photos?query=${query}&client_id=${ACCESS_KEY}`);
     return data;
 }
+
+
 
   

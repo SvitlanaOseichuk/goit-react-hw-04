@@ -11,16 +11,18 @@ function App() {
   const [pictures, setPictures] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [search, setSearch] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
         setIsLoading(true);
         const data = await requestPictures();
+        setPictures(data)
         console.log(data)
       } catch (error) {
         setIsError(true);
+        console.log(error)
       } finally {
         setIsLoading(false);
       }
@@ -30,12 +32,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const fetchDataByQuery = async () => {
-      if (search === null) return;
+    if (searchQuery === null) return;
 
+    async function fetchDataByQuery() {
       try {
         setIsLoading(true);
-        const data = await requestPicturesByQuery(search);
+        const data = await requestPicturesByQuery(searchQuery);
         setPictures(data);
       } catch (error) {
         console.error('Error fetching pictures by query:', error);
@@ -46,16 +48,16 @@ function App() {
     };
 
     fetchDataByQuery();
-  }, [search]);
+  }, [searchQuery]);
 
-  const onSubmit = (query) => {
-    setSearch(query);
+  const onSetsearchquery = (query) => {
+    setSearchQuery(query);
     console.log(query)
   };
 
   return (
     <>
-      <SearchBar onSubmit={onSubmit} />
+      <SearchBar onSetsearchquery={onSetsearchquery} />
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}
       <ImageGallery pictures={pictures} />
