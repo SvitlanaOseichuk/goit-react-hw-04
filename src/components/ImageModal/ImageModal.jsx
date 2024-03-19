@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-const ImageModal = () => {
+
+const ImageModal = ({ image, onCloseModal }) => {
   return (
-    <div>ImageModal</div>
-  )
+    <div>
+      {/* Зображення великого формату */}
+      <img src={image.largeImageUrl} alt={image.title} />
+      {/* Кнопка для закриття модального вікна */}
+      <button onClick={onCloseModal}>Close</button>
+    </div>
+  );
 }
 
-export default ImageModal
+export default ImageModal;

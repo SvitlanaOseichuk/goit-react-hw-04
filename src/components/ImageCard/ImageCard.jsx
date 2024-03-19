@@ -5,7 +5,7 @@ const ImageCard = ({pic}) => {
     <div>
         <img
           width={360}
-          src={pic.urls.small} 
+          src={pic.urls && pic.urls.small} 
           alt={pic.description || 'Unsplash image'} 
         />
     </div>

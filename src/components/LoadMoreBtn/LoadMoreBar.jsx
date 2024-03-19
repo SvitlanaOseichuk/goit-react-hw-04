@@ -1,9 +1,16 @@
 import React from 'react'
 
-const LoadMoreBar = () => {
+const LoadMoreBar = ({ onClick }) => {
   return (
-    <div>LoadMoreBar</div>
+    <>
+      {onClick && (
+        <button onClick={onClick}>
+          Load more
+        </button>
+      )}
+    </>
   )
 }
+
 
 export default LoadMoreBar
