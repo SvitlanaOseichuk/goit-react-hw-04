@@ -1,0 +1,7 @@
+.image {
+    margin-top: 30px;
+    max-width: 750px;
+    max-height: 550px;
+    object-fit: cover;
+    background-color: rgba(83, 32, 32, 0.87);
+}

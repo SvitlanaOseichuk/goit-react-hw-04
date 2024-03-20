@@ -2,7 +2,11 @@ import React from 'react';
 import Modal from 'react-modal';
 import css from './ImageModal.module.css'
 
+
 const customStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+  },
   content: {
     top: '50%',
     left: '50%',
@@ -10,6 +14,8 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    backgroundColor: 'black',
+    border: 'none',
   },
 };
 
@@ -18,6 +24,7 @@ const ImageModal = ({ isOpen, image, onCloseModal }) => {
 
   return (
     <Modal
+      className={css.modal}
       isOpen={isOpen}
       onRequestClose={onCloseModal}
       contentLabel="Image Modal"

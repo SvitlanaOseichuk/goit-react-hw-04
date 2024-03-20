@@ -18,29 +18,13 @@ function App() {
   const [isError, setIsError] = useState(false);
   const [searchQuery, setSearchQuery] = useState(null);
   const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
+  const [showBtn, setShowBtn] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(false); 
+  const [selectedImage, setSelectedImage] = useState(null); 
 
 
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       setIsLoading(true);
-  //       const data = await requestPictures();
-  //       setPictures(data);
-  //       setShowContent(true);
-  //     } catch (error) {
-  //       setHasMore(false)
-  //       setShowContent(false)
-  //       setIsError(true);
-  //       console.error('Error fetching pictures:', error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
   useEffect(() => {
     
     if (searchQuery === null) return;
@@ -56,10 +40,9 @@ function App() {
           return [...prevPictures, ...data.results];
         });
         setShowContent(true);
-        setHasMore(data.results.length > 0);
+        setShowBtn(data.total_pages && data.total_pages !== page)
         setPage(1)
       } catch (error) {
-        setHasMore(false)
         setShowContent(false)
         console.error('Error fetching pictures by query:', error);
         setIsError(true);
@@ -104,7 +87,7 @@ function App() {
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}
       {showContent && searchQuery && <ImageGallery pictures={pictures} onImageClick={openModal} />}
-      {hasMore && searchQuery && <LoadMoreBar onClick={onLoadMore} />}
+      {showBtn && searchQuery && <LoadMoreBar onClick={onLoadMore} />}
       {selectedImage && (
         <ImageModal 
           isOpen={modalIsOpen} 
