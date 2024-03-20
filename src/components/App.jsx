@@ -25,29 +25,22 @@ function App() {
 
 
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setIsLoading(true);
-        const data = await requestPictures();
-        setPictures(data);
-        setShowContent(true);
-      } catch (error) {
-        setHasMore(false)
-        setShowContent(false)
-        setIsError(true);
-        console.error('Error fetching pictures:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-
-
-
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       setIsLoading(true);
+  //       const data = await requestPictures();
+  //       setPictures(data);
+  //       setShowContent(true);
+  //     } catch (error) {
+  //       setHasMore(false)
+  //       setShowContent(false)
+  //       setIsError(true);
+  //       console.error('Error fetching pictures:', error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
   useEffect(() => {
     
     if (searchQuery === null) return;
@@ -62,9 +55,12 @@ function App() {
           }
           return [...prevPictures, ...data.results];
         });
+        setShowContent(true);
         setHasMore(data.results.length > 0);
         setPage(1)
       } catch (error) {
+        setHasMore(false)
+        setShowContent(false)
         console.error('Error fetching pictures by query:', error);
         setIsError(true);
       } finally {
@@ -115,8 +111,8 @@ function App() {
           onCloseModal={closeModal} 
           image={selectedImage} 
         />
-      )}  
-    </>
+      )} 
+      </>
   );
 }
 

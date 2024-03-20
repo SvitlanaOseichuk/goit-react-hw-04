@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import css from './ImageModal.module.css'
 
 const customStyles = {
   content: {
@@ -23,9 +24,7 @@ const ImageModal = ({ isOpen, image, onCloseModal }) => {
       style={customStyles}
     >
       <div>
-        {/* Зображення великого формату */}
-        <img src={image.urls.regular} alt={image.title} />
-        {/* Кнопка для закриття модального вікна */}
+        <img className={css.image} src={image.urls.regular} alt={image.title} />
         <button onClick={onCloseModal}>Close</button>
       </div>
     </Modal>

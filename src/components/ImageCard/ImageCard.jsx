@@ -1,10 +1,12 @@
 import React from 'react'
+import css from './ImageCard.module.css'
 
 const ImageCard = ({pic, onImageClick}) => {
   return (
     <div>
         <img 
-          onImageClick={() => onImageClick(pic)} 
+          className={css.image}
+          onClick={() => onImageClick(pic)} 
           width={360}
           src={pic.urls && pic.urls.small} 
           alt={pic.description || 'Unsplash image'} 

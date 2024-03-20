@@ -1,9 +1,10 @@
 import React from 'react';
 import ImageCard from '../ImageCard/ImageCard';
+import css from './ImageGallery.module.css'
 
 const ImageGallery = ({ pictures, onImageClick }) => {
   return (
-    <ul>
+    <ul className={css.picturesList}>
       {pictures !== null && Array.isArray(pictures) && (
         pictures.map((pic, index) => (
           <li key={`${pic.id}${index}`}> 
