@@ -8,25 +8,10 @@ import ErrorMessage from './ErrorMessage/ErrorMessae';
 import { requestPictures, requestPicturesByQuery } from '../services/api';
 import LoadMoreBar from './LoadMoreBtn/LoadMoreBar';
 import ImageModal from './ImageModal/ImageModal';
-import Modal from 'react-modal';
-
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
-
 
 
 function App() {
 
-  let pictrs;
 
   const [pictures, setPictures] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -106,19 +91,12 @@ function App() {
 
 
  
-  // Функція для відкриття модального вікна з обраним зображенням
   const openModal = (image) => {
     setSelectedImage(image);
     setModalIsOpen(true);
   };
 
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    pictrs.style.color = '#f00';
-  }
-
-  // Функція для закриття модального вікна
   const closeModal = () => {
     setSelectedImage(null);
     setModalIsOpen(false);
@@ -131,17 +109,13 @@ function App() {
       {isLoading && <Loader />}
       {showContent && searchQuery && <ImageGallery pictures={pictures} onImageClick={openModal} />}
       {hasMore && searchQuery && <LoadMoreBar onClick={onLoadMore} />}
-      <Modal
-        onAfterOpen={afterOpenModal}
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Image Modal"
-        style={customStyles}
-      >
-        {selectedImage && (
-          <ImageModal image={selectedImage} onCloseModal={closeModal} />
-        )}
-      </Modal>
+      {selectedImage && (
+        <ImageModal 
+          isOpen={modalIsOpen} 
+          onCloseModal={closeModal} 
+          image={selectedImage} 
+        />
+      )}  
     </>
   );
 }
