@@ -41,7 +41,6 @@ function App() {
         });
         setShowContent(true);
         setShowBtn(data.total_pages && data.total_pages !== page)
-        setPage(1)
       } catch (error) {
         setShowContent(false)
         console.error('Error fetching pictures by query:', error);
